@@ -1,0 +1,8 @@
+<a fdCard sky="sakura" [routerLink]="['/episodes', episode().id]">
+  <fd-badge slot="badge" tone="neutral"
+    ><span class="fd-sr">Durée : </span>{{ duration() }}</fd-badge
+  >
+  <span slot="title">{{ episode().title }}</span>
+  <span slot="meta">{{ date() }}</span>
+  <span class="app-episode-card__text">{{ episode().description }}</span>
+</a>
