@@ -1,0 +1,40 @@
+<nav class="app-header__nav" aria-label="Principal">
+  <ul class="app-header__list">
+    <li class="app-header__item app-header__item--before">
+      <a
+        class="app-header__link"
+        routerLink="/a-propos"
+        routerLinkActive="app-header__link--current"
+        ariaCurrentWhenActive="page"
+        >À propos</a
+      >
+    </li>
+    <li class="app-header__item app-header__item--logo">
+      <a
+        class="app-header__logo"
+        routerLink="/"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="app-header__logo--current"
+        ariaCurrentWhenActive="page"
+        aria-label="Hakuna Matata, accueil"
+      >
+        <img
+          src="logo-160.webp"
+          srcset="logo-160.webp 1x, logo-320.webp 2x"
+          width="64"
+          height="64"
+          alt=""
+        />
+      </a>
+    </li>
+    <li class="app-header__item app-header__item--after">
+      <a
+        class="app-header__link"
+        routerLink="/episodes"
+        routerLinkActive="app-header__link--current"
+        ariaCurrentWhenActive="page"
+        >Épisodes</a
+      >
+    </li>
+  </ul>
+</nav>

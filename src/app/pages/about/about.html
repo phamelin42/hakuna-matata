@@ -1,0 +1,21 @@
+<h1 class="app-about__title">À propos</h1>
+
+<div class="app-about__body">
+  <p class="app-about__lead">
+    {{ podcast.title }} est un podcast de {{ podcast.author }}, à écouter sur Spotify.
+  </p>
+  @for (paragraph of paragraphs; track $index) {
+    <p>{{ paragraph }}</p>
+  }
+  <div class="app-about__actions">
+    <a fdButton routerLink="/episodes">Parcourir les épisodes</a>
+    <a
+      fdButton
+      variant="secondary"
+      [href]="podcast.spotifyShowUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Écouter sur Spotify<span class="fd-sr"> (nouvel onglet)</span></a
+    >
+  </div>
+</div>

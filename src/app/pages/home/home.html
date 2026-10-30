@@ -1,0 +1,25 @@
+<section class="app-hero" aria-labelledby="accueil-titre">
+  <h1 class="app-hero__title" id="accueil-titre">{{ podcast.title }}</h1>
+  <p class="app-hero__lead">Un podcast par {{ podcast.author }}.</p>
+  <div class="app-hero__actions">
+    <a fdButton routerLink="/episodes">Découvrir les épisodes</a>
+    <a
+      fdButton
+      variant="secondary"
+      [href]="podcast.spotifyShowUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Écouter sur Spotify<span class="fd-sr"> (nouvel onglet)</span></a
+    >
+  </div>
+</section>
+
+<section class="app-latest" aria-labelledby="derniers-titre">
+  <h2 class="app-latest__title" id="derniers-titre">Derniers épisodes</h2>
+  <ul class="app-latest__list">
+    @for (episode of latest; track episode.id) {
+      <li><app-episode-card [episode]="episode" /></li>
+    }
+  </ul>
+  <a fdButton variant="secondary" routerLink="/episodes">Tous les épisodes</a>
+</section>

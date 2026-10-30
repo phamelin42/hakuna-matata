@@ -1,0 +1,61 @@
+@if (episode(); as episode) {
+  <article>
+    <a class="app-episode__back" fdButton variant="ghost" size="sm" routerLink="/episodes"
+      ><span aria-hidden="true">←</span> Tous les épisodes</a
+    >
+    <p class="app-episode__meta">
+      <time [attr.datetime]="episode.publishedAt">{{ date() }}</time>
+      <span aria-hidden="true"> · </span>
+      <span class="fd-sr">Durée : </span>{{ duration() }}
+    </p>
+    <h1 class="app-episode__title">{{ episode.title }}</h1>
+
+    @if (episode.audioUrl) {
+      <audio
+        class="app-episode__player"
+        controls
+        preload="none"
+        [src]="episode.audioUrl"
+        [attr.aria-label]="'Écouter : ' + episode.title"
+      ></audio>
+    }
+    @if (episode.spotifyId) {
+      <p>
+        <a
+          fdButton
+          [variant]="episode.audioUrl ? 'secondary' : 'primary'"
+          [href]="'https://open.spotify.com/episode/' + episode.spotifyId"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Écouter sur Spotify<span class="fd-sr"> (nouvel onglet)</span></a
+        >
+      </p>
+    }
+
+    <div class="app-episode__description">
+      @for (paragraph of paragraphs(); track $index) {
+        <p>{{ paragraph }}</p>
+      }
+    </div>
+
+    @if (neighbours().newer || neighbours().older) {
+      <nav class="app-episode__neighbours" aria-label="Autres épisodes">
+        @if (neighbours().newer; as newer) {
+          <a fdButton variant="secondary" [routerLink]="['/episodes', newer.id]"
+            ><span aria-hidden="true">←</span> Épisode suivant<span class="fd-sr">
+              : {{ newer.title }}</span
+            ></a
+          >
+        }
+        @if (neighbours().older; as older) {
+          <a fdButton variant="secondary" [routerLink]="['/episodes', older.id]"
+            >Épisode précédent<span class="fd-sr"> : {{ older.title }}</span>
+            <span aria-hidden="true">→</span></a
+          >
+        }
+      </nav>
+    }
+  </article>
+} @else {
+  <app-not-found />
+}

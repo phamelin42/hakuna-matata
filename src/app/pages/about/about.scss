@@ -1,0 +1,32 @@
+.app-about {
+  display: block;
+}
+
+.app-about__title {
+  margin: 0 0 var(--space-6);
+  color: var(--ink);
+  font: 400 36px/42px var(--font-display);
+}
+
+.app-about__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 40rem;
+  color: var(--ink);
+}
+
+.app-about__body p {
+  margin: 0;
+}
+
+.app-about .app-about__lead {
+  font: 500 18px/30px var(--font-text);
+}
+
+.app-about__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}

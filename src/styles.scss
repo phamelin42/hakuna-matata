@@ -1,0 +1,7 @@
+// Fuda (tokens et fondations) est déclarée avant ce fichier dans angular.json : le paquet
+// @phamelin/fuda n'exporte pas ses styles, un @import ne les résoudrait pas.
+
+// Polices latines seulement (pas de japonais) : fonts.css de Fuda charge aussi le japonais.
+@import '@fontsource/dela-gothic-one/latin-400.css';
+@import '@fontsource/zen-maru-gothic/latin-500.css';
+@import '@fontsource/zen-maru-gothic/latin-700.css';
