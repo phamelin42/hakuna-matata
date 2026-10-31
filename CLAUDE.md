@@ -47,4 +47,5 @@ Pages : `/` (accueil, derniers épisodes), `/a-propos`, `/episodes` (recherche, 
 - `<base href="/">` casse `href="#contenu"` (retour à l'accueil) : le lien d'évitement déplace le focus lui-même.
 - La case d'un `fd-switch` est masquée sous la piste : Playwright clique le libellé (`getByText`), pas le `switch`.
 - Un `import.meta.url` dans `e2e/` casse Playwright (paquet non ESM) : `process.cwd()`.
+- Sur Vercel, le projet créé par `infra` ajoute un repli vers `index.html` (statut 200 pour toute adresse inconnue), que `http-server` ne reproduit pas : `vercel.json` utilise `routes` (système de fichiers, puis `404.html` en 404). Vérifier un 404 sur le site déployé, pas seulement en e2e.
 - Angular 22 ne produit pas `404.html` tout seul : la route `404` est pré-rendue puis déplacée par `tools/seo.mjs`.
