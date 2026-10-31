@@ -1,8 +1,16 @@
-<a fdCard sky="sakura" [routerLink]="['/episodes', episode().id]">
-  <fd-badge slot="badge" tone="neutral"
-    ><span class="fd-sr">Durée : </span>{{ duration() }}</fd-badge
-  >
+<a fdCard [routerLink]="['/episodes', episode().id]">
+  <img
+    class="app-episode-card__cover"
+    src="logo-160.webp"
+    srcset="logo-160.webp 1x, logo-320.webp 2x"
+    width="96"
+    height="96"
+    alt=""
+    loading="lazy"
+  />
   <span slot="title">{{ episode().title }}</span>
-  <span slot="meta">{{ date() }}</span>
-  <span class="app-episode-card__text">{{ episode().description }}</span>
+  <span slot="meta">{{ date() }} · <span class="fd-sr">Durée : </span>{{ duration() }}</span>
+  @if (episode().description) {
+    <span class="app-episode-card__text">{{ episode().description }}</span>
+  }
 </a>

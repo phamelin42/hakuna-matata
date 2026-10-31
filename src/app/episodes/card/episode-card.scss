@@ -2,10 +2,51 @@
   display: block;
 }
 
+.app-episode-card .fd-card {
+  height: 100%;
+}
+
+/* La carte de Fuda est verticale : on la couche en grille pour mettre la pochette à gauche du texte. */
+.app-episode-card .fd-card__body {
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-auto-rows: min-content;
+  align-content: start;
+  column-gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.app-episode-card .fd-card__text {
+  display: contents;
+}
+
+.app-episode-card .app-episode-card__cover {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 96px;
+  height: 96px;
+  border: var(--border-ink) solid var(--rim);
+  border-radius: var(--radius-md);
+}
+
+.app-episode-card .fd-card__title,
+.app-episode-card .fd-card__meta,
+.app-episode-card .app-episode-card__text {
+  grid-column: 2;
+}
+
 .app-episode-card .app-episode-card__text {
   display: -webkit-box;
   overflow: hidden;
+  margin-top: var(--space-1);
+  font: 500 14px/22px var(--font-text);
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   line-clamp: 3;
+}
+
+@media (max-width: 30rem) {
+  .app-episode-card .app-episode-card__cover {
+    width: 72px;
+    height: 72px;
+  }
 }

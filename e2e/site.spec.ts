@@ -118,6 +118,49 @@ test.describe('icône d’onglet et référencement', () => {
 });
 
 test.describe('épisodes', () => {
+  test('aligne les quatre champs : mêmes libellés en haut, mêmes contrôles en dessous', async ({
+    page,
+  }) => {
+    await page.goto('/episodes');
+    const fields = [
+      {
+        name: 'Rechercher',
+        control: page.getByRole('searchbox', { name: 'Rechercher', exact: true }),
+      },
+      { name: 'Année', control: page.getByRole('combobox', { name: 'Année', exact: true }) },
+      { name: 'Durée', control: page.getByRole('combobox', { name: 'Durée', exact: true }) },
+      {
+        name: 'Trier par',
+        control: page.getByRole('combobox', { name: 'Trier par', exact: true }),
+      },
+    ];
+    const boxes = await Promise.all(
+      fields.map(async ({ name, control }) => ({
+        label: await page.locator('.fd-field__label', { hasText: name }).first().boundingBox(),
+        control: await control.boundingBox(),
+      })),
+    );
+    for (const { label, control } of boxes) {
+      expect(label!.y).toBeCloseTo(boxes[0].label!.y, 0);
+      expect(control!.y).toBeCloseTo(boxes[0].control!.y, 0);
+      expect(control!.height).toBeCloseTo(boxes[0].control!.height, 0);
+    }
+  });
+
+  test('chaque carte montre la pochette, le titre et la durée', async ({ page }) => {
+    await page.goto('/episodes');
+    const card = page.getByRole('link', { name: new RegExp(EPISODES[0].title.slice(0, 20)) });
+    const cover = card.locator('img');
+    await expect(cover).toBeVisible();
+    await expect(cover).toHaveAttribute('alt', '');
+    const [image, title] = await Promise.all([
+      cover.boundingBox(),
+      card.locator('.fd-card__title').boundingBox(),
+    ]);
+    expect(image!.x + image!.width).toBeLessThanOrEqual(title!.x);
+    expect(await cover.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  });
+
   test('recherche, vide, puis réinitialise', async ({ page }) => {
     await page.goto('/episodes');
     const status = page.getByRole('status');
