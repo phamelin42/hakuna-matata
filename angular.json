@@ -29,7 +29,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["node_modules/@phamelin/fuda/styles/fuda.css", "src/styles.scss"],
+            "styles": [
+              "node_modules/@phamelin/fuda/styles/fuda.css",
+              "src/theme.scss",
+              "src/styles.scss"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "static"
           },
