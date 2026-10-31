@@ -1,0 +1,46 @@
+.app-episodes {
+  display: block;
+}
+
+.app-episodes__title {
+  margin: 0 0 var(--space-6);
+  color: var(--ink);
+  font: 400 36px/42px var(--font-display);
+}
+
+.app-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  align-items: end;
+  gap: var(--space-4);
+}
+
+.app-filters .app-filters__text {
+  grid-column: 1 / -1;
+}
+
+.app-episodes__summary {
+  margin: var(--space-6) 0;
+  color: var(--ink-muted);
+  font: 500 14px/20px var(--font-text);
+}
+
+.app-episodes__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-episodes .app-episodes__more {
+  display: flex;
+  margin: var(--space-8) auto 0;
+}
+
+@media (min-width: 48rem) {
+  .app-filters .app-filters__text {
+    grid-column: span 2;
+  }
+}

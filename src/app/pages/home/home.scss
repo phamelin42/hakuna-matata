@@ -1,0 +1,79 @@
+.app-home {
+  display: block;
+}
+
+/* Le sable, puis deux bandes de lagon en bas : la pochette du podcast, en aplats. */
+.app-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-5) calc(var(--space-16) + var(--space-8));
+  overflow: hidden;
+  border: var(--border-fuda) solid var(--rim);
+  border-radius: var(--radius-lg);
+  background: var(--surface-sunken);
+}
+
+.app-hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--space-16);
+  background: linear-gradient(to bottom, var(--mizu) 50%, var(--sakura) 50%);
+}
+
+.app-hero__title {
+  margin: 0;
+  color: var(--ink);
+  font: 400 36px/42px var(--font-display);
+  letter-spacing: -0.005em;
+}
+
+.app-hero__lead {
+  margin: 0;
+  color: var(--ink);
+  font: 500 18px/30px var(--font-text);
+}
+
+.app-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.app-latest {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+.app-latest__title {
+  margin: 0;
+  color: var(--ink);
+  font: 400 24px/30px var(--font-display);
+}
+
+.app-latest__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-6);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .app-hero {
+    padding: var(--space-12) var(--space-8) calc(var(--space-16) + var(--space-12));
+  }
+
+  .app-hero__title {
+    font-size: 48px;
+    line-height: 52px;
+  }
+}

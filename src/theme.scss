@@ -1,0 +1,77 @@
+// Surcouche de thème du site : la palette de la pochette de Hakuna Matata, posée par-dessus les
+// jetons de Fuda (angular.json la charge après fuda.css). Fuda ne change pas : on redéfinit ici
+// seulement les valeurs, avec les mêmes sélecteurs, pour qu'elles l'emportent à l'ordre de chargement.
+// Les noms restent ceux de Fuda (`sakura` est la couleur principale, ici le turquoise du lagon) ;
+// succès, info et erreur (`tokiwa`, `asagi`, `fuji`, `enji`) gardent la teinte de Fuda.
+// `tools/check-theme.mjs` vérifie les contrastes de ces valeurs dans les deux thèmes.
+
+// Jour : sable, crème, lagon turquoise, menthe, ambre, encre presque noir.
+:root,
+[data-theme='light'] {
+  --surface: #faf4e6;
+  --surface-raised: #fffcf5;
+  --surface-sunken: #efddc5;
+  --line: #e2d0b4;
+  --line-strong: #7b6d58;
+  --ink: #1d1b16;
+  --ink-muted: #5c5446;
+  --on-ink: #fffcf5;
+  --rim: #2b2a22;
+  --scrim: #1d1b1680;
+  --kon: #00605f;
+  --shu: #ee7b3a;
+  --yamabuki: #fdba55;
+  --on-yamabuki: #1d1b16;
+  --yamabuki-soft: #fff0d2;
+  --on-tokiwa: #ffffff;
+  --tokiwa-soft: #ddf1e5;
+  --on-asagi: #ffffff;
+  --asagi-soft: #e3f1f4;
+  --mizu: #a9e0c6;
+  --on-fuji: #ffffff;
+  --fuji-soft: #efe9f8;
+  --sakura: #1db5ae;
+  --sakura-press: #12a39d;
+  --sakura-deep: #006d6b;
+  --on-sakura: #0a1f1e;
+  --sakura-soft: #d9f2ea;
+  --on-enji: #ffffff;
+  --shadow-lift: 0 8px 18px -8px #1d1b1659;
+  --shadow-float: 0 14px 32px -10px #1d1b1666, 0 2px 6px #1d1b161f;
+  --focus-ring: 0 0 0 2px #fffcf5, 0 0 0 4px #19709a;
+}
+
+// Nuit : lagon de nuit, texte crème, liseré menthe.
+[data-theme='dark'] {
+  --surface: #0a2f2e;
+  --surface-raised: #11413f;
+  --surface-sunken: #061f1e;
+  --line: #1f5654;
+  --line-strong: #7db5ae;
+  --ink: #f8f1dc;
+  --ink-muted: #bcd5cb;
+  --on-ink: #0a2f2e;
+  --rim: #a8e3c9;
+  --scrim: #031514b3;
+  --kon: #0e5452;
+  --shu: #ff9a55;
+  --yamabuki: #fdba55;
+  --on-yamabuki: #0a2f2e;
+  --yamabuki-soft: #43380f;
+  --on-tokiwa: #0a2f2e;
+  --tokiwa-soft: #14453a;
+  --on-asagi: #0a2f2e;
+  --asagi-soft: #1b4a5a;
+  --mizu: #5fc9b0;
+  --on-fuji: #0a2f2e;
+  --fuji-soft: #33305f;
+  --sakura: #3fcfc4;
+  --sakura-press: #6fddd3;
+  --sakura-deep: #8fe6db;
+  --on-sakura: #062423;
+  --sakura-soft: #12504c;
+  --on-enji: #0a2f2e;
+  --shadow-lift: 0 10px 22px -8px #00000099;
+  --shadow-float: 0 16px 36px -8px #000000b3, 0 2px 6px #00000066;
+  --focus-ring: 0 0 0 2px #0a2f2e, 0 0 0 4px #6cc4e4;
+}

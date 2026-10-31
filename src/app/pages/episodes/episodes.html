@@ -1,0 +1,56 @@
+<h1 class="app-episodes__title">Épisodes</h1>
+
+<div class="app-filters" role="search" aria-label="Rechercher, filtrer et trier les épisodes">
+  <fd-text-field
+    class="app-filters__text"
+    label="Rechercher"
+    type="search"
+    icon="search"
+    placeholder="Un mot du titre ou de la description"
+    [(value)]="text"
+  />
+  <fd-select label="Année" [options]="yearOptions" [(value)]="year" />
+  <fd-select label="Durée" [options]="lengthOptions" [(value)]="length" />
+  <fd-select label="Trier par" [options]="sortOptions" [(value)]="sort" />
+  <button
+    class="app-filters__reset"
+    fdButton
+    variant="ghost"
+    type="button"
+    [attr.aria-disabled]="isFiltered() ? null : 'true'"
+    (click)="reset()"
+  >
+    Réinitialiser les filtres
+  </button>
+</div>
+
+<p class="app-episodes__summary" role="status">{{ summary() }}</p>
+
+<h2 class="fd-sr">Liste des épisodes</h2>
+@if (shown().length > 0) {
+  <ul class="app-episodes__list">
+    @for (episode of shown(); track episode.id) {
+      <li><app-episode-card [episode]="episode" /></li>
+    }
+  </ul>
+  @if (hasMore()) {
+    <button
+      class="app-episodes__more"
+      fdButton
+      variant="secondary"
+      type="button"
+      (click)="showMore()"
+    >
+      Afficher plus d’épisodes
+    </button>
+  }
+} @else {
+  <fd-empty-state
+    title="Aucun épisode ne correspond"
+    text="Essaie un autre mot, ou retire un filtre pour retrouver les épisodes."
+  >
+    <button fdButton variant="secondary" type="button" (click)="reset()">
+      Réinitialiser les filtres
+    </button>
+  </fd-empty-state>
+}

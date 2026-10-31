@@ -1,0 +1,11 @@
+<footer class="app-footer__inner">
+  <p class="app-footer__credit">{{ podcast.title }}, un podcast par {{ podcast.author }}.</p>
+  <a
+    class="app-footer__link"
+    [href]="podcast.spotifyShowUrl"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Écouter sur Spotify<span class="fd-sr"> (nouvel onglet)</span></a
+  >
+  <fd-switch [checked]="isDark()" (checkedChange)="setDark($event)">Thème nuit</fd-switch>
+</footer>
