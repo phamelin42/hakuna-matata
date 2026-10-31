@@ -59,7 +59,7 @@
 
 .app-latest__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
   gap: var(--space-6);
   width: 100%;
   margin: 0;
