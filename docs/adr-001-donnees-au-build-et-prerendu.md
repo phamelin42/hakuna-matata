@@ -22,6 +22,10 @@ l'embed (le dernier épisode seulement) ; son API demande une clé et un serveur
 4. **Filtres et tris côté navigateur**, sur le catalogue embarqué (fonctions pures testées). Texte
    sans accents ni casse, année, durée (courts < 15 min, longs ≥ 30 min), cinq tris.
 
+5. **Palette en surcouche** (`src/theme.scss`), pas dans Fuda : la direction artistique du design
+   system ne change pas pour un site. Le fichier redéfinit les valeurs des jetons de Fuda (mêmes
+   noms, mêmes sélecteurs, chargé après `fuda.css`) ; les contrastes sont testés dans `tools/`.
+
 ## Conséquences
 
 - Un nouvel épisode n'apparaît qu'après une synchronisation et un déploiement.

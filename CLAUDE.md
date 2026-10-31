@@ -10,21 +10,22 @@ Pages : `/` (accueil, derniers épisodes), `/a-propos`, `/episodes` (recherche, 
 
 ## Commandes
 
-| Commande                             | Rôle                                                                   |
-| ------------------------------------ | ---------------------------------------------------------------------- |
-| `npm start`                          | Serveur de développement                                               |
-| `npm test` / `npm run test:tools`    | Tests unitaires (Vitest via `ng test`) / tests de `tools/` (node)      |
-| `npm run lint` / `npm run typecheck` | ESLint (angular-eslint) / tsc sur l'appli et les specs                 |
-| `npm run build`                      | Build + pré-rendu (`dist/hakuna-matata/browser`), puis `tools/seo.mjs` |
-| `npm run e2e`                        | Playwright sur ce build (`E2E_PORT` règle le port, 4300 par défaut)    |
-| `npm run sync:episodes <url RSS>`    | Réécrit `src/app/data/episodes.json` depuis le flux du podcast         |
+| Commande                             | Rôle                                                                                              |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `npm start`                          | Serveur de développement                                                                          |
+| `npm test` / `npm run test:tools`    | Tests unitaires (Vitest via `ng test`) / tests de `tools/` (node) : flux RSS, contrastes du thème |
+| `npm run lint` / `npm run typecheck` | ESLint (angular-eslint) / tsc sur l'appli et les specs                                            |
+| `npm run build`                      | Build + pré-rendu (`dist/hakuna-matata/browser`), puis `tools/seo.mjs`                            |
+| `npm run e2e`                        | Playwright sur ce build (`E2E_PORT` règle le port, 4300 par défaut)                               |
+| `npm run sync:episodes <url RSS>`    | Réécrit `src/app/data/episodes.json` depuis le flux du podcast                                    |
 
 ## Structure
 
 - `src/app/data/` : `episodes.json` (écrit par `sync:episodes`, ne pas éditer à la main sauf pour un épisode que le flux n'a pas) et `podcast.json`. Embarqués au build : **aucun appel réseau à l'exécution**.
 - `src/app/episodes/` : modèle, `Catalog`, filtres et tris purs (`episode-query.ts`), formats, carte d'épisode.
 - `src/app/pages/`, `src/app/layout/`, `src/app/seo/` : pages, en-tête et pied de page, titre/description/canonique de chaque page.
-- `tools/` : `sync-episodes.mjs` (flux RSS → JSON, borné, texte brut), `seo.mjs` (sitemap, robots, `404.html`).
+- `src/theme.scss` : la surcouche de palette (valeurs des jetons de Fuda).
+- `tools/` : `sync-episodes.mjs` (flux RSS → JSON, borné, texte brut), `seo.mjs` (sitemap, robots, `404.html`), `theme.test.mjs` (contrastes).
 - `docs/adr-001-*.md` : pourquoi des données au build, pourquoi le pré-rendu et le lecteur natif.
 
 ## Règles à ne pas casser
@@ -33,11 +34,12 @@ Pages : `/` (accueil, derniers épisodes), `/a-propos`, `/episodes` (recherche, 
 - Aucun contenu inventé : pas de description du podcast, de thème d'épisode ou de biographie qui ne vienne pas de Soraya ou du flux. `podcast.description` vide = la page « À propos » reste factuelle.
 - Pas d'iframe ni de SDK Spotify (cookies tiers) : lecteur `<audio>` natif quand le flux donne un fichier, lien « Écouter sur Spotify » sinon.
 - Durées : courts < 15 min, moyens de 15 à 30 min, longs 30 min et plus. Dates à l'heure de Paris (pré-rendu et navigateur doivent dire la même chose).
+- Les couleurs viennent de `src/theme.scss` seulement ; `tools/theme.test.mjs` en vérifie les contrastes (Jour et Nuit). Changer une valeur = relancer `npm run test:tools`.
 - Une page de plus s'ajoute à `e2e/pages.ts` (axe Jour/Nuit et reflow la prennent alors toute seule) et à `tools/seo.mjs` si elle est indexable.
 
 ## Écarts au contexte commun
 
-- Fuda `^0.2.0` (palette de la pochette). Les autres projets restent en `^0.1.0` jusqu'à leur migration.
+- **Palette de la pochette en surcouche** (`src/theme.scss`, chargé après `fuda.css`) : sable, crème, lagon turquoise, menthe, ambre, encre presque noir ; Nuit en lagon de nuit. Elle redéfinit les valeurs des jetons de Fuda avec les mêmes sélecteurs et les mêmes noms (`sakura` est ici le turquoise). Fuda reste en `^0.1.0` et **sa direction artistique ne change pas** (décision de Phil : un thème propre à un site se fait dans le site). Succès, info et erreur gardent la teinte de Fuda.
 - Pas de CSP : le script de thème en ligne et les styles critiques d'Angular l'exigeraient avec empreintes ; à faire si Phil le demande.
 
 ## Pièges déjà rencontrés
